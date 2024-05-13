@@ -19,7 +19,7 @@ const checkToken = async (refreshToken, res) => {
   }
   const checkTokenValid = await prisma.users.findFirst({
     where: {
-      refresh_token: "dsadada",
+      refresh_token: refreshToken,
     },
   });
   if (checkTokenValid === null) {
@@ -46,7 +46,7 @@ export const login = async (req, res) => {
 
   // compare password from database with request from user
   bcrypt.compare(password, user.password).then(async function (result) {
-    // check when user exist 
+    // check when user exist
     if (result) {
       const data = {
         username: user.username,
@@ -73,10 +73,10 @@ export const login = async (req, res) => {
         },
       });
       // send access token to response body
-      res.send({ accessToken });
+      res.json({ accessToken });
     } else {
       // when user doesn't exist, send failed message
-      res.status(400).send({ message: "Failed to login" });
+      res.status(400).json({ message: "Failed to login" });
     }
   });
 };
@@ -97,7 +97,7 @@ export const refreshToken = async (req, res) => {
     const accessToken = generateToken(decoded.data, secretKey, "20s");
 
     // send response to response body
-    return res.status(200).send({ accessToken });
+    return res.status(200).json({ accessToken });
   });
 };
 
@@ -120,5 +120,5 @@ export const logout = async (req, res) => {
   res.clearCookie("refreshToken");
 
   // send message
-  return res.status(200).send({ message: "Logout successfully" });
+  return res.status(200).json({ message: "Logout successfuly" });
 };
