@@ -7,7 +7,9 @@
   "author": "hlkgt <haihaioell@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "migrate": "yarn prisma db push",
+    "seed": "yarn prisma db push --force-reset && node src/seeders/seeder.js"
   },
   "dependencies": {
     "@prisma/client": "5.13.0",

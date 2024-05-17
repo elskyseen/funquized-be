@@ -8,32 +8,34 @@ datasource db {
 }
 
 model categories {
-  id            Int        @id @default(autoincrement())
+  id            Int          @id @default(autoincrement())
   image         String
   url_image     String
-  category_name String     @unique
+  category_name String       @unique
   chapters      chapters[]
+  challenges    challenges[]
 }
 
 model chapters {
-  id             Int          @id @default(autoincrement())
+  id             Int        @id @default(autoincrement())
   categorie_id   Int
   user_id        Int
   chapter_number Int
-  active         Boolean
-  challenges     challenges[]
-  categori       categories   @relation(fields: [categorie_id], references: [id])
-  user           users        @relation(fields: [user_id], references: [id])
+  active         Boolean    @default(false)
+  categorie      categories @relation(fields: [categorie_id], references: [id])
+  user           users      @relation(fields: [user_id], references: [id])
 }
 
 model challenges {
-  id              Int      @id @default(autoincrement())
-  chapter_id      Int
-  challenge_image String
+  id              Int        @id @default(autoincrement())
+  categorie_id    Int
+  challenge_image String?
   question        String
   choices         String[]
   answer          String
-  chapter         chapters @relation(fields: [chapter_id], references: [id])
+  level           Int
+  categorie       categories @relation(fields: [categorie_id], references: [id])
+  point           Int
 }
 
 model users {
