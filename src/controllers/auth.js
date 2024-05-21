@@ -12,28 +12,6 @@ const generateToken = (data, secretKey, time) => {
   return token;
 };
 
-// function to check refresh token is valid or no
-const checkToken = async (refreshToken, res) => {
-  if (!refreshToken) {
-    return res.status(401);
-  }
-  const checkTokenValid = await prisma.users.findFirst({
-    where: {
-      refresh_token: refreshToken,
-    },
-  });
-  if (checkTokenValid === null) {
-    return res.status(403);
-  }
-};
-
-// function for check error for handle jwt
-const checkErrJWT = (err) => {
-  if (err) {
-    return res.status(204);
-  }
-};
-
 // handler login from router
 export const login = async (req, res) => {
   // get username and password form body request
@@ -84,14 +62,25 @@ export const login = async (req, res) => {
 // handler new token
 export const refreshToken = async (req, res) => {
   // get refresh token from cookie
-  const refreshToken = req.cookies.refreshToken;
+  const { refreshToken } = req.cookies;
 
-  // check token using function declare
-  checkToken(refreshToken, res);
+  if (!refreshToken) {
+    return res.status(401).json({ message: "User Unauthorize" });
+  }
+  const checkTokenValid = await prisma.users.findFirst({
+    where: {
+      refresh_token: refreshToken,
+    },
+  });
+
+  if (checkTokenValid === null) {
+    return res.status(403).json({ message: "User unauthorize" });
+  }
 
   // verify token with refresh key from env
   jwt.verify(refreshToken, refreshKey, function (err, decoded) {
-    checkErrJWT(err);
+    // check error for handle jwt
+    if (err) return res.status(204).json({ err });
 
     // generate new access token
     const accessToken = generateToken(decoded.data, secretKey, "20s");

@@ -9,7 +9,7 @@ import { PORT } from "./src/utils/variable.js";
 dotenv.config();
 const app = express();
 
-app.use(cors({ credentials: true }));
+app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(cookie());
 app.use(express.static("public"));
 app.use(fileUpload());

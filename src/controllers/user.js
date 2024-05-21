@@ -19,15 +19,14 @@ export const getUsers = async (req, res) => {
         banned: true,
       },
     });
+    // send response to response body
+    return res.json({
+      message: "Get user successfuly",
+      data: users,
+    });
   } catch (error) {
     console.log(error);
   }
-
-  // send response to response body
-  res.json({
-    message: "Get user successfuly",
-    data: users,
-  });
 };
 
 // handle create user / signup / register
