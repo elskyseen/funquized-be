@@ -7,6 +7,15 @@ import { PORT } from "../utils/variable.js";
 import { genFullNameImage } from "../utils/genFullNameImage.js";
 import { blankChar } from "../validations/blankCharValidation.js";
 
+export const getCategorie = async (req, res) => {
+  try {
+    const categorie = await prisma.categories.findMany();
+    return res.json({ message: "Get caregorie successfuly", data: categorie });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 export const createCategorie = async (req, res) => {
   // handle required file
   if (!req.files) {
