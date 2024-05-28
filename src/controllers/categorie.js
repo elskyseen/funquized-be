@@ -9,8 +9,20 @@ import { blankChar } from "../validations/blankCharValidation.js";
 
 export const getCategorie = async (req, res) => {
   try {
-    const categorie = await prisma.categories.findMany();
-    return res.json({ message: "Get caregorie successfuly", data: categorie });
+    const categories = await prisma.categories.findMany({
+      select: {
+        id: true,
+        url_image: true,
+        category_name: true,
+        challenges: {
+          select: {
+            level: true,
+            point: true,
+          },
+        },
+      },
+    });
+    return res.json({ message: "Get caregorie successfuly", data: categories });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

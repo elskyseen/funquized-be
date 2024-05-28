@@ -3,7 +3,7 @@ import { categorieSeeder } from "./categorie.js";
 import { challengeSeeder } from "./challenges.js";
 
 async function seeder() {
-  categorieSeeder();
+  // categorieSeeder();
   challengeSeeder();
 }
 

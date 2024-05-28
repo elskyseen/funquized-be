@@ -8,22 +8,12 @@ datasource db {
 }
 
 model categories {
-  id            Int          @id @default(autoincrement())
-  image         String
-  url_image     String
-  category_name String       @unique
-  chapters      chapters[]
-  challenges    challenges[]
-}
-
-model chapters {
-  id             Int        @id @default(autoincrement())
-  categorie_id   Int
-  user_id        Int
-  chapter_number Int
-  active         Boolean    @default(false)
-  categorie      categories @relation(fields: [categorie_id], references: [id])
-  user           users      @relation(fields: [user_id], references: [id])
+  id             Int              @id @default(autoincrement())
+  image          String
+  url_image      String
+  category_name  String           @unique
+  challenges     challenges[]
+  user_proggress user_proggress[]
 }
 
 model challenges {
@@ -38,15 +28,24 @@ model challenges {
   point           Int
 }
 
-model users {
+model user_proggress {
   id            Int        @id @default(autoincrement())
-  username      String     @unique
-  email         String     @unique
-  password      String
-  user_image    String?
-  image_url     String?
-  point         Int        @default(0)
-  banned        Boolean    @default(false)
-  refresh_token String?
-  chapters      chapters[]
+  user_id       Int
+  categorie_id  Int
+  current_level Int
+  users         users      @relation(fields: [user_id], references: [id])
+  categories    categories @relation(fields: [categorie_id], references: [id])
+}
+
+model users {
+  id             Int              @id @default(autoincrement())
+  username       String           @unique
+  email          String           @unique
+  password       String
+  user_image     String?
+  image_url      String?
+  point          Int              @default(0)
+  banned         Boolean          @default(false)
+  refresh_token  String?
+  user_proggress user_proggress[]
 }

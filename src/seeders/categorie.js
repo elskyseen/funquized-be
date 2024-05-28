@@ -2,14 +2,13 @@ import { prisma } from "../config/db.js";
 import { categories } from "../utils/propertie.js";
 
 export async function categorieSeeder() {
-  categories.map(async (categorie) => {
-    const { image, url_image, category_name } = categorie;
-    return await prisma.categories.create({
+  for (let i = 0; i < categories.length; i++) {
+    await prisma.categories.create({
       data: {
-        image,
-        url_image,
-        category_name,
+        image: categories[i].image,
+        url_image: categories[i].url_image,
+        category_name: categories[i].category_name,
       },
     });
-  });
+  }
 }
