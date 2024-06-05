@@ -31,9 +31,7 @@ export const getChallenge = async (req, res) => {
 
 export const postChallenge = async (req, res) => {
   try {
-    const { refreshToken } = req.cookies;
-    const decode = jwtDecode(refreshToken);
-    const { level, categorie, answer } = req.body;
+    const { level, categorie, answer, username } = req.body;
     const { id } = await prisma.categories.findFirst({
       where: {
         category_name: categorie,
@@ -52,19 +50,27 @@ export const postChallenge = async (req, res) => {
         point: true,
       },
     });
+    const user = await prisma.users.findUnique({
+      where: {
+        username,
+      },
+      select: {
+        id: true,
+        point: true,
+      },
+    });
 
-    if (answer === challenge.answer) {
-      const { username } = decode.data;
-      const user = await prisma.users.findUnique({
-        where: {
-          username,
-        },
-        select: {
-          id: true,
-          point: true,
-        },
-      });
+    const progresUser = await prisma.user_proggress.findFirst({
+      where: {
+        categorie_id: id,
+        user_id: user.id,
+      },
+      select: {
+        current_level: true,
+      },
+    });
 
+    if (level == progresUser.current_level && answer === challenge.answer) {
       await prisma.users.update({
         where: {
           username,
@@ -73,14 +79,13 @@ export const postChallenge = async (req, res) => {
           point: user.point + challenge.point,
         },
       });
-
       await prisma.user_proggress.updateMany({
         where: {
           categorie_id: id,
           user_id: user.id,
         },
         data: {
-          current_level: level != "20" ? parseInt(level) + 1 : 20,
+          current_level: parseInt(level) + 1,
         },
       });
     }

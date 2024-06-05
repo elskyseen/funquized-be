@@ -160,16 +160,12 @@ export const getUserProggress = async (req, res) => {
       where: {
         categorie_id: parseInt(getCategorie.id),
         user_id: parseInt(getUser.id),
-        current_level: parseInt(level),
       },
       select: {
         current_level: true,
       },
     });
-    if (!progres) {
-      return res.json({ current_level: null });
-    }
-    return res.json({ current_level: progres.current_level });
+    return res.json({ valid_level: level <= progres.current_level });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
