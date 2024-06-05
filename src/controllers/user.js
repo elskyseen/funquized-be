@@ -20,7 +20,7 @@ export const getUsers = async (req, res) => {
       select: {
         username: true,
         email: true,
-        user_image: true,
+        image_url: true,
         point: true,
         banned: true,
       },

@@ -5,7 +5,13 @@ import {
   getUsers,
   updateUser,
 } from "../controllers/user.js";
-import { login, logout, refreshToken } from "../controllers/auth.js";
+import {
+  googleCallback,
+  googleLogin,
+  login,
+  logout,
+  refreshToken,
+} from "../controllers/auth.js";
 import { authMiddleware } from "../middleware/auth.js";
 import { createCategorie, getCategorie } from "../controllers/categorie.js";
 import { getChapters } from "../controllers/chapter.js";
@@ -22,6 +28,8 @@ router.post(genPath("users"), createUser);
 router.patch(genPath("users"), updateUser);
 
 router.post(genPath("login"), login);
+router.get(genPath("auth/google"), googleLogin);
+router.get(genPath("auth/google/authcallback"), googleCallback);
 router.get(genPath("token"), refreshToken);
 router.delete(genPath("logout"), logout);
 

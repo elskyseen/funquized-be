@@ -1,10 +1,23 @@
 import { prisma } from "../config/db.js";
 import bcrypt from "bcrypt";
+import { google } from "googleapis";
 import jwt from "jsonwebtoken";
+import {
+  CLIENT_ID,
+  CLIENT_SECRET,
+  CLIENT_URL,
+  URL_CALLBACK,
+} from "../utils/variable.js";
 
 // get secret and refresh key from env
 const secretKey = process.env.SECRET_KEY;
 const refreshKey = process.env.REFRESH_KEY;
+
+const oauth2client = new google.auth.OAuth2(
+  CLIENT_ID,
+  CLIENT_SECRET,
+  URL_CALLBACK
+);
 
 // function for generate token using jwt
 const generateToken = (data, secretKey, time) => {
@@ -70,14 +83,14 @@ export const refreshToken = async (req, res) => {
   if (!refreshToken) {
     return res.status(401).json({ message: "User Unauthorize" });
   }
-  const checkTokenValid = await prisma.users.findFirst({
+  const checkTokenValid = await prisma.users.findMany({
     where: {
       refresh_token: refreshToken,
     },
   });
 
   if (checkTokenValid === null) {
-    return res.status(403).json({ message: "User unauthorize" });
+    return res.status(403).json({ message: "Forbidden" });
   }
 
   // verify token with refresh key from env
@@ -117,4 +130,98 @@ export const logout = async (req, res) => {
   res.clearCookie("isLogin");
   // send message
   return res.status(200).json({ message: "Logout successfuly" });
+};
+
+export const googleLogin = (req, res) => {
+  const scopes = [
+    "https://www.googleapis.com/auth/userinfo.email",
+    "https://www.googleapis.com/auth/userinfo.profile",
+  ];
+
+  const authorizeUrl = oauth2client.generateAuthUrl({
+    access_type: "offline",
+    scope: scopes,
+    include_granted_scopes: true,
+  });
+
+  return res.redirect(authorizeUrl);
+};
+
+export const googleCallback = async (req, res) => {
+  const { code } = req.query;
+  const { tokens } = await oauth2client.getToken(code);
+
+  oauth2client.setCredentials(tokens);
+
+  const { people } = google.people({ version: "v1", auth: oauth2client });
+  people.get(
+    {
+      resourceName: "people/me",
+      personFields: "names,emailAddresses,photos",
+    },
+    async (err, result) => {
+      if (err) return console.error("The API returned an error: " + err);
+      const { names, emailAddresses, photos } = result.data;
+
+      const { displayName } = names[0];
+      const { url } = photos[0];
+      const { value } = emailAddresses[0];
+
+      let data;
+
+      const user = await prisma.users.findUnique({
+        where: {
+          username: displayName,
+        },
+        select: {
+          user_image: true,
+          email: true,
+          point: true,
+          username: true,
+        },
+      });
+
+      if (user) {
+        data = {
+          username: user.username,
+          email: user.email,
+          point: user.point,
+          image: user.user_image,
+        };
+      } else {
+        data = {
+          username: displayName,
+          email: value,
+          point: 0,
+          image: url,
+        };
+      }
+
+      const refreshToken = generateToken(data, refreshKey, "1d");
+
+      if (!user) {
+        await prisma.users.create({
+          data: {
+            image_url: url,
+            username: displayName,
+            email: value,
+            refresh_token: refreshToken,
+            point: 0,
+            password: "-",
+          },
+        });
+      }
+
+      // set cookie with name "refreshToken"
+      res.cookie("refreshToken", refreshToken, {
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000,
+      });
+      res.cookie("isLogin", true, {
+        maxAge: 24 * 60 * 60 * 1000,
+      });
+
+      return res.redirect(CLIENT_URL);
+    }
+  );
 };
