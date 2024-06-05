@@ -5,12 +5,18 @@ import { PORT } from "../utils/variable.js";
 import { extValidation } from "../validations/extValidation.js";
 import { sizeValidation } from "../validations/sizeValidation.js";
 import { genFullNameImage } from "../utils/genFullNameImage.js";
+import { jwtDecode } from "jwt-decode";
 
 // handle get users
 export const getUsers = async (req, res) => {
   // get users from database and filter field
   try {
-    const users = await prisma.users.findMany({
+    const { refreshToken } = req.cookies;
+    const { data } = jwtDecode(refreshToken);
+    const users = await prisma.users.findFirst({
+      where: {
+        email: data.email,
+      },
       select: {
         username: true,
         email: true,
@@ -78,7 +84,7 @@ export const updateUser = async (req, res) => {
   const { protocol, hostname } = req;
 
   // get field from body and file request
-  const { email } = req.body;
+  const { username } = req.body;
   const { name, md5, size, mv } = req.files.file;
 
   // create fullname image, ext, url image and path to move image
@@ -100,7 +106,7 @@ export const updateUser = async (req, res) => {
   }
 
   // validate blank character or white space
-  if (blankChar(email)) {
+  if (blankChar(username)) {
     return res.status(400).json({ message: "bad request" });
   }
 
@@ -115,7 +121,7 @@ export const updateUser = async (req, res) => {
   try {
     await prisma.users.update({
       where: {
-        email,
+        username,
       },
       data: {
         image_url: imageUrl,
@@ -127,4 +133,44 @@ export const updateUser = async (req, res) => {
   }
 
   res.status(201).json({ message: "User updated" });
+};
+
+export const getUserProggress = async (req, res) => {
+  const { username, categorie, level } = req.query;
+  try {
+    const getUser = await prisma.users.findUnique({
+      where: {
+        username,
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    const getCategorie = await prisma.categories.findUnique({
+      where: {
+        category_name: categorie,
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    const progres = await prisma.user_proggress.findFirst({
+      where: {
+        categorie_id: parseInt(getCategorie.id),
+        user_id: parseInt(getUser.id),
+        current_level: parseInt(level),
+      },
+      select: {
+        current_level: true,
+      },
+    });
+    if (!progres) {
+      return res.json({ current_level: null });
+    }
+    return res.json({ current_level: progres.current_level });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
 };

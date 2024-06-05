@@ -41,6 +41,9 @@ export const login = async (req, res) => {
         httpOnly: true,
         maxAge: 24 * 60 * 60 * 1000,
       });
+      res.cookie("isLogin", true, {
+        maxAge: 24 * 60 * 60 * 1000,
+      });
       // update column refresh_token on database
       await prisma.users.update({
         where: {
@@ -93,12 +96,16 @@ export const refreshToken = async (req, res) => {
 // handler logout user
 export const logout = async (req, res) => {
   // get email from request body
-  const { email } = req.body;
+  const { username } = req.body;
+
+  if (!username) {
+    return res.status(400).json({ message: "Username is needed!" });
+  }
 
   // update refresh token to null
   await prisma.users.update({
     where: {
-      email: email,
+      username,
     },
     data: {
       refresh_token: null,
@@ -107,7 +114,7 @@ export const logout = async (req, res) => {
 
   // clear cookie from user
   res.clearCookie("refreshToken");
-
+  res.clearCookie("isLogin");
   // send message
   return res.status(200).json({ message: "Logout successfuly" });
 };

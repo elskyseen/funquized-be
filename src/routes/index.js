@@ -1,5 +1,10 @@
 import expres from "express";
-import { createUser, getUsers, updateUser } from "../controllers/user.js";
+import {
+  createUser,
+  getUserProggress,
+  getUsers,
+  updateUser,
+} from "../controllers/user.js";
 import { login, logout, refreshToken } from "../controllers/auth.js";
 import { authMiddleware } from "../middleware/auth.js";
 import { createCategorie, getCategorie } from "../controllers/categorie.js";
@@ -26,5 +31,7 @@ router.post(genPath("categories"), createCategorie);
 router.get(genPath("chapters"), getChapters);
 
 router.get(genPath("challenges"), getChallenge);
+
+router.get(genPath("user_progres"), getUserProggress);
 
 export default router;
