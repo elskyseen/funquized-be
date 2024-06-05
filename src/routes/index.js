@@ -9,7 +9,7 @@ import { login, logout, refreshToken } from "../controllers/auth.js";
 import { authMiddleware } from "../middleware/auth.js";
 import { createCategorie, getCategorie } from "../controllers/categorie.js";
 import { getChapters } from "../controllers/chapter.js";
-import { getChallenge } from "../controllers/challenge.js";
+import { getChallenge, postChallenge } from "../controllers/challenge.js";
 
 const router = expres.Router();
 
@@ -31,6 +31,7 @@ router.post(genPath("categories"), createCategorie);
 router.get(genPath("chapters"), getChapters);
 
 router.get(genPath("challenges"), getChallenge);
+router.post(genPath("challenges"), postChallenge);
 
 router.get(genPath("user_progres"), getUserProggress);
 
