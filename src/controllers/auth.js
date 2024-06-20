@@ -28,11 +28,13 @@ const generateToken = (data, secretKey, time) => {
 // handler login from router
 export const login = async (req, res) => {
   // get username and password form body request
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
   // find user with username
-  const user = await prisma.users.findFirst({
-    where: username,
+  const user = await prisma.users.findUnique({
+    where: {
+      email,
+    },
   });
 
   // compare password from database with request from user
@@ -43,10 +45,10 @@ export const login = async (req, res) => {
         username: user.username,
         email: user.email,
         point: user.point,
-        image: user.user_image,
+        image: user.image_url,
       };
       // generate jwt token using function declare
-      const accessToken = generateToken(data, secretKey, "20s");
+      const accessToken = generateToken(data, secretKey, "1d");
       const refreshToken = generateToken(data, refreshKey, "1d");
 
       // set cookie with name "refreshToken"
@@ -67,7 +69,7 @@ export const login = async (req, res) => {
         },
       });
       // send access token to response body
-      res.json({ accessToken });
+      res.json({ data, accessToken });
     } else {
       // when user doesn't exist, send failed message
       res.status(400).json({ message: "Failed to login" });
@@ -83,27 +85,34 @@ export const refreshToken = async (req, res) => {
   if (!refreshToken) {
     return res.status(401).json({ message: "User Unauthorize" });
   }
-  const checkTokenValid = await prisma.users.findMany({
-    where: {
-      refresh_token: refreshToken,
-    },
-  });
+  try {
+    const checkTokenValid = await prisma.users.findMany({
+      where: {
+        refresh_token: refreshToken,
+      },
+      select: {
+        refresh_token: true,
+      },
+    });
 
-  if (checkTokenValid === null) {
-    return res.status(403).json({ message: "Forbidden" });
+    if (checkTokenValid === null) {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+    // verify token with refresh key from env
+    jwt.verify(refreshToken, refreshKey, function (err, decoded) {
+      // check error for handle jwt
+      if (err) return res.status(204).json({ err });
+
+      // generate new access token
+      const accessToken = generateToken(decoded.data, secretKey, "1d");
+
+      // send response to response body
+      return res.status(200).json({ accessToken });
+    });
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
-
-  // verify token with refresh key from env
-  jwt.verify(refreshToken, refreshKey, function (err, decoded) {
-    // check error for handle jwt
-    if (err) return res.status(204).json({ err });
-
-    // generate new access token
-    const accessToken = generateToken(decoded.data, secretKey, "20s");
-
-    // send response to response body
-    return res.status(200).json({ accessToken });
-  });
 };
 
 // handler logout user
