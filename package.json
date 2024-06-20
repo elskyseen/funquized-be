@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "nodemon index.js",
     "migrate": "yarn prisma db push",
-    "seed": "yarn prisma db push --force-reset && node src/seeders/seeder.js"
+    "seed": "yarn prisma db push --force-reset && node src/seeders/seeder.js",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "5.13.0",
