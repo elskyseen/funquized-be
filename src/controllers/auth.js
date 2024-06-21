@@ -51,14 +51,6 @@ export const login = async (req, res) => {
       const accessToken = generateToken(data, secretKey, "1d");
       const refreshToken = generateToken(data, refreshKey, "1d");
 
-      // set cookie with name "refreshToken"
-      res.cookie("refreshToken", refreshToken, {
-        maxAge: 24 * 60 * 60 * 1000,
-        httpOnly: true,
-        secure: true,
-        sameSite: "None",
-        partitioned: true,
-      });
       // update column refresh_token on database
       await prisma.users.update({
         where: {
@@ -68,11 +60,27 @@ export const login = async (req, res) => {
           refresh_token: refreshToken,
         },
       });
+
+      // set cookie with name "refreshToken"
+      res.cookie("isLogin", true, {
+        maxAge: 24 * 60 * 60 * 1000,
+        secure: true,
+        sameSite: "Strict",
+        partitioned: true,
+      });
+      res.cookie("refreshToken", refreshToken, {
+        maxAge: 24 * 60 * 60 * 1000,
+        httpOnly: true,
+        secure: true,
+        sameSite: "None",
+        partitioned: true,
+      });
+
       // send access token to response body
-      res.json({ data, accessToken });
+      return res.json({ accessToken });
     } else {
       // when user doesn't exist, send failed message
-      res.status(400).json({ message: "Failed to login" });
+      return res.status(400).json({ message: "Failed to login" });
     }
   });
 };
