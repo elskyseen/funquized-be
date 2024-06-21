@@ -81,6 +81,7 @@ export const login = async (req, res) => {
 export const refreshToken = async (req, res) => {
   // get refresh token from cookie
   const { refreshToken } = req.cookies;
+  return res.json(res.cookie);
 
   if (!refreshToken) {
     return res.status(401).json({ message: "User Unauthorize" });
