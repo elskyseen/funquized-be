@@ -58,13 +58,10 @@ export const login = async (req, res) => {
         secure: true,
         path: "/",
         sameSite: "None",
-        partitioned: true,
       });
       res.cookie("isLogin", true, {
         secure: true,
-        path: "/",
         sameSite: "None",
-        partitioned: true,
       });
       // update column refresh_token on database
       await prisma.users.update({
