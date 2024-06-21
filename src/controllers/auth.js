@@ -57,9 +57,15 @@ export const login = async (req, res) => {
         httpOnly: true,
         secure: true,
         path: "/",
-        sameSite: "strict",
+        sameSite: "None",
+        partitioned: true,
       });
-      res.cookie("isLogin", true);
+      res.cookie("isLogin", true, {
+        secure: true,
+        path: "/",
+        sameSite: "None",
+        partitioned: true,
+      });
       // update column refresh_token on database
       await prisma.users.update({
         where: {
@@ -131,8 +137,7 @@ export const logout = async (req, res) => {
   });
 
   // clear cookie from user
-  res.clearCookie("refreshToken");
-  res.clearCookie("isLogin");
+  res.clearCookie(["refreshToken", "isLogin", "iat"]);
   // send message
   return res.status(200).json({ message: "Logout successfuly" });
 };
