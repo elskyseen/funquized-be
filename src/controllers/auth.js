@@ -55,12 +55,12 @@ export const login = async (req, res) => {
       res.cookie("refreshToken", refreshToken, {
         httpOnly: true,
         maxAge: 24 * 60 * 60 * 1000,
-        sameSite: "Lax",
+        sameSite: "lax",
         secure: true,
       });
       res.cookie("isLogin", true, {
         maxAge: 24 * 60 * 60 * 1000,
-        sameSite: "Lax",
+        sameSite: "lax",
         secure: true,
       });
       // update column refresh_token on database
