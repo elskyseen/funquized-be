@@ -9,7 +9,14 @@ import { PORT } from "./src/utils/variable.js";
 dotenv.config();
 const app = express();
 
-app.use(cors({ credentials: true, origin: "https://funquized-fe.vercel.app" }));
+const corsOptions = {
+  origin: "https://funquized-fe.vercel.app",
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type","Authorization"],
+};
+
+app.use(cors(corsOptions));
 app.use(cookie());
 app.use(express.static("public"));
 app.use(fileUpload());

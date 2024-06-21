@@ -55,13 +55,13 @@ export const login = async (req, res) => {
       res.cookie("refreshToken", refreshToken, {
         httpOnly: true,
         maxAge: 24 * 60 * 60 * 1000,
+        sameSite: "Lax",
         secure: true,
-        sameSite: "None",
       });
       res.cookie("isLogin", true, {
         maxAge: 24 * 60 * 60 * 1000,
+        sameSite: "Lax",
         secure: true,
-        sameSite: "None",
       });
       // update column refresh_token on database
       await prisma.users.update({
