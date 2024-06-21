@@ -8,6 +8,7 @@ import {
   CLIENT_URL,
   URL_CALLBACK,
 } from "../utils/variable.js";
+import { path } from "express/lib/application.js";
 
 // get secret and refresh key from env
 const secretKey = process.env.SECRET_KEY;
@@ -63,16 +64,18 @@ export const login = async (req, res) => {
 
       // set cookie with name "refreshToken"
       res.cookie("isLogin", true, {
+        path: "/",
         maxAge: 24 * 60 * 60 * 1000,
         secure: true,
-        sameSite: "Strict",
+        sameSite: "Lax",
         partitioned: true,
       });
       res.cookie("refreshToken", refreshToken, {
+        path: "/",
         maxAge: 24 * 60 * 60 * 1000,
         httpOnly: true,
         secure: true,
-        sameSite: "None",
+        sameSite: "Lax",
         partitioned: true,
       });
 
