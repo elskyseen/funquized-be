@@ -100,19 +100,14 @@ export const refreshToken = async (req, res) => {
       return res.status(403).json({ message: "Forbidden" });
     }
     // verify token with refresh key from env
-    jwt.verify(refreshToken, refreshKey, function (err, decoded) {
-      // check error for handle jwt
-      if (err) return res.send({ err, token: req.cookies });
+    const jwtDecoded = jwt.verify(refreshToken, refreshKey);
 
-      // generate new access token
-      const accessToken = generateToken(decoded.data, secretKey, "1d");
+    const accessToken = generateToken(jwtDecoded.data, secretKey, "1d");
 
-      // send response to response body
-      return res.status(200).json({ accessToken });
-    });
+    // send response to response body
+    return res.status(200).json({ accessToken });
   } catch (error) {
-    console.log(error);
-    throw error;
+    return res.status(400).json(error);
   }
 };
 
