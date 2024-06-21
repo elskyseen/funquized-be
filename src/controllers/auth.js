@@ -62,7 +62,7 @@ export const login = async (req, res) => {
       });
       res.cookie("isLogin", true, {
         secure: true,
-        sameSite: "Lax",
+        sameSite: "Strict",
         partitioned: true,
       });
       // update column refresh_token on database
