@@ -55,13 +55,9 @@ export const login = async (req, res) => {
       res.cookie("refreshToken", refreshToken, {
         httpOnly: true,
         maxAge: 24 * 60 * 60 * 1000,
-        sameSite: "lax",
-        secure: true,
       });
       res.cookie("isLogin", true, {
         maxAge: 24 * 60 * 60 * 1000,
-        sameSite: "lax",
-        secure: true,
       });
       // update column refresh_token on database
       await prisma.users.update({
@@ -105,7 +101,7 @@ export const refreshToken = async (req, res) => {
     // verify token with refresh key from env
     jwt.verify(refreshToken, refreshKey, function (err, decoded) {
       // check error for handle jwt
-      if (err) return res.status(500).json({ token: res.cookie });
+      if (err) return res.status(204).json({ err });
 
       // generate new access token
       const accessToken = generateToken(decoded.data, secretKey, "1d");
