@@ -61,7 +61,8 @@ export const login = async (req, res) => {
         partitioned: true,
       });
       res.cookie("isLogin", true, {
-        sameSite: "None",
+        secure: true,
+        sameSite: "Lax",
         partitioned: true,
       });
       // update column refresh_token on database
