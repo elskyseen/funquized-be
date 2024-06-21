@@ -105,7 +105,7 @@ export const refreshToken = async (req, res) => {
     // verify token with refresh key from env
     jwt.verify(refreshToken, refreshKey, function (err, decoded) {
       // check error for handle jwt
-      if (err) return res.status(500).json({ err, token: res.cookie });
+      if (err) return res.status(500).json({ token: res.cookie });
 
       // generate new access token
       const accessToken = generateToken(decoded.data, secretKey, "1d");
