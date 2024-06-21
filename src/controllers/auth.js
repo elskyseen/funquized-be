@@ -56,13 +56,13 @@ export const login = async (req, res) => {
         maxAge: 24 * 60 * 60 * 1000,
         httpOnly: true,
         secure: true,
-        path: "/",
         sameSite: "None",
         partitioned: true,
       });
       res.cookie("isLogin", true, {
+        maxAge: 24 * 60 * 60 * 1000,
         secure: true,
-        sameSite: "Strict",
+        sameSite: "None",
         partitioned: true,
       });
       // update column refresh_token on database
@@ -136,7 +136,9 @@ export const logout = async (req, res) => {
   });
 
   // clear cookie from user
-  res.clearCookie(["refreshToken", "isLogin", "iat"]);
+  res.clearCookie("iat");
+  res.clearCookie("isLogin");
+  res.clearCookie("refreshToken");
   // send message
   return res.status(200).json({ message: "Logout successfuly" });
 };
