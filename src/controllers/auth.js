@@ -66,7 +66,7 @@ export const login = async (req, res) => {
         path: "/",
         maxAge: 24 * 60 * 60 * 1000,
         secure: true,
-        sameSite: "Lax",
+        sameSite: "None",
         partitioned: true,
       });
       res.cookie("refreshToken", refreshToken, {
@@ -74,7 +74,7 @@ export const login = async (req, res) => {
         maxAge: 24 * 60 * 60 * 1000,
         httpOnly: true,
         secure: true,
-        sameSite: "Lax",
+        sameSite: "None",
         partitioned: true,
       });
 
