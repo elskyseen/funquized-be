@@ -8,7 +8,6 @@ import {
   CLIENT_URL,
   URL_CALLBACK,
 } from "../utils/variable.js";
-import { path } from "express/lib/application.js";
 
 // get secret and refresh key from env
 const secretKey = process.env.SECRET_KEY;
