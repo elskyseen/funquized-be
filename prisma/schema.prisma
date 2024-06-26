@@ -7,45 +7,52 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model categories {
-  id             Int              @id @default(autoincrement())
+model Category {
+  id             Int             @id @default(autoincrement())
   image          String
   url_image      String
-  category_name  String           @unique
-  challenges     challenges[]
-  user_proggress user_proggress[]
+  category_name  String          @unique
+  challenges     Challenges[]
+  user_proggress UserProggress[]
+
+  @@map("category")
 }
 
-model challenges {
-  id              Int        @id @default(autoincrement())
-  categorie_id    Int
+model Challenges {
+  id              Int      @id @default(autoincrement())
+  category_id     Int
   challenge_image String?
   question        String
   choices         String[]
   answer          String
   level           Int
-  categorie       categories @relation(fields: [categorie_id], references: [id])
+  categorie       Category @relation(fields: [category_id], references: [id])
   point           Int
+
+  @@map("challenges")
 }
 
-model user_proggress {
-  id            Int        @id @default(autoincrement())
+model UserProggress {
+  id            Int      @id @default(autoincrement())
   user_id       Int
-  categorie_id  Int
+  category_id   Int
   current_level Int
-  users         users      @relation(fields: [user_id], references: [id])
-  categories    categories @relation(fields: [categorie_id], references: [id])
+  users         Users    @relation(fields: [user_id], references: [id])
+  category      Category @relation(fields: [category_id], references: [id])
+
+  @@map("user_proggress")
 }
 
-model users {
-  id             Int              @id @default(autoincrement())
-  username       String           @unique
-  email          String           @unique
+model Users {
+  id             Int             @id @default(autoincrement())
+  username       String          @unique
   password       String
   user_image     String?
   image_url      String?
-  point          Int              @default(0)
-  banned         Boolean          @default(false)
+  point          Int             @default(0)
+  banned         Boolean         @default(false)
   refresh_token  String?
-  user_proggress user_proggress[]
+  user_proggress UserProggress[]
+
+  @@map("users")
 }

@@ -1,23 +1,12 @@
 import { prisma } from "../config/db.js";
 import bcrypt from "bcrypt";
-import { google } from "googleapis";
 import jwt from "jsonwebtoken";
-import {
-  CLIENT_ID,
-  CLIENT_SECRET,
-  CLIENT_URL,
-  URL_CALLBACK,
-} from "../utils/variable.js";
+import { clearSpace } from "../utils/replaceWhiteSpace.js";
+import cookie from "cookie";
 
 // get secret and refresh key from env
 const secretKey = process.env.SECRET_KEY;
 const refreshKey = process.env.REFRESH_KEY;
-
-const oauth2client = new google.auth.OAuth2(
-  CLIENT_ID,
-  CLIENT_SECRET,
-  URL_CALLBACK
-);
 
 // function for generate token using jwt
 const generateToken = (data, secretKey, time) => {
@@ -28,12 +17,13 @@ const generateToken = (data, secretKey, time) => {
 // handler login from router
 export const login = async (req, res) => {
   // get username and password form body request
-  const { email, password } = req.body;
+  const { username, password } = req.body;
+  let cleanedString = clearSpace(username);
 
   // find user with username
   const user = await prisma.users.findUnique({
     where: {
-      email,
+      username: cleanedString,
     },
   });
 
@@ -43,7 +33,6 @@ export const login = async (req, res) => {
     if (result) {
       const data = {
         username: user.username,
-        email: user.email,
         point: user.point,
         image: user.image_url,
       };
@@ -54,7 +43,7 @@ export const login = async (req, res) => {
       // update column refresh_token on database
       await prisma.users.update({
         where: {
-          email: data.email,
+          username: data.username,
         },
         data: {
           refresh_token: refreshToken,
@@ -62,22 +51,28 @@ export const login = async (req, res) => {
       });
 
       // set cookie with name "refreshToken"
-      res.cookie("isLogin", true, {
-        path: "/",
-        maxAge: 24 * 60 * 60 * 1000,
-        secure: true,
-        sameSite: "None",
-        partitioned: true,
-      });
-      res.cookie("refreshToken", refreshToken, {
-        path: "/",
-        maxAge: 24 * 60 * 60 * 1000,
-        httpOnly: true,
-        secure: true,
-        sameSite: "None",
-        partitioned: true,
-      });
+      if (data && data.username) {
+        // Set a new cookie with the name
+        const cookies = [
+          cookie.serialize("refreshToken", refreshToken, {
+            maxAge: 24 * 60 * 60 * 1000,
+            path: "/",
+            httpOnly: true,
+            secure: true,
+            sameSite: "None",
+            partitioned: true,
+          }),
+          cookie.serialize("isLogin", true, {
+            maxAge: 24 * 60 * 60 * 1000,
+            path: "/",
+            secure: true,
+            sameSite: "None",
+            partitioned: true,
+          }),
+        ];
 
+        res.setHeader("Set-Cookie", cookies);
+      }
       // send access token to response body
       return res.json({ accessToken });
     } else {
@@ -122,7 +117,7 @@ export const refreshToken = async (req, res) => {
 
 // handler logout user
 export const logout = async (req, res) => {
-  // get email from request body
+  // get username from request body
   const { username } = req.body;
 
   if (!username) {
@@ -145,98 +140,4 @@ export const logout = async (req, res) => {
   res.clearCookie("refreshToken");
   // send message
   return res.status(200).json({ message: "Logout successfuly" });
-};
-
-export const googleLogin = (req, res) => {
-  const scopes = [
-    "https://www.googleapis.com/auth/userinfo.email",
-    "https://www.googleapis.com/auth/userinfo.profile",
-  ];
-
-  const authorizeUrl = oauth2client.generateAuthUrl({
-    access_type: "offline",
-    scope: scopes,
-    include_granted_scopes: true,
-  });
-
-  return res.redirect(authorizeUrl);
-};
-
-export const googleCallback = async (req, res) => {
-  const { code } = req.query;
-  const { tokens } = await oauth2client.getToken(code);
-
-  oauth2client.setCredentials(tokens);
-
-  const { people } = google.people({ version: "v1", auth: oauth2client });
-  people.get(
-    {
-      resourceName: "people/me",
-      personFields: "names,emailAddresses,photos",
-    },
-    async (err, result) => {
-      if (err) return console.error("The API returned an error: " + err);
-      const { names, emailAddresses, photos } = result.data;
-
-      const { displayName } = names[0];
-      const { url } = photos[0];
-      const { value } = emailAddresses[0];
-
-      let data;
-
-      const user = await prisma.users.findUnique({
-        where: {
-          username: displayName,
-        },
-        select: {
-          user_image: true,
-          email: true,
-          point: true,
-          username: true,
-        },
-      });
-
-      if (user) {
-        data = {
-          username: user.username,
-          email: user.email,
-          point: user.point,
-          image: user.user_image,
-        };
-      } else {
-        data = {
-          username: displayName,
-          email: value,
-          point: 0,
-          image: url,
-        };
-      }
-
-      const refreshToken = generateToken(data, refreshKey, "1d");
-
-      if (!user) {
-        await prisma.users.create({
-          data: {
-            image_url: url,
-            username: displayName,
-            email: value,
-            refresh_token: refreshToken,
-            point: 0,
-            password: "-",
-          },
-        });
-      }
-
-      // set cookie with name "refreshToken"
-      res.cookie("refreshToken", refreshToken, {
-        httpOnly: true,
-        maxAge: 24 * 60 * 60 * 1000,
-      });
-      res.cookie("isLogin", true, {
-        maxAge: 24 * 60 * 60 * 1000,
-      });
-
-      return res.redirect(CLIENT_URL);
-    }
-  );
 };

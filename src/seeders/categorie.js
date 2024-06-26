@@ -1,7 +1,7 @@
 import { prisma } from "../config/db.js";
 
 export async function categorieSeeder() {
-  await prisma.categories.createMany({
+  await prisma.category.createMany({
     data: [
       {
         image: "categorie_fruit.png",

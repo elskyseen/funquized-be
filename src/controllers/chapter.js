@@ -8,14 +8,14 @@ export const getChapters = async (req, res) => {
   try {
     const getUser = await prisma.users.findFirst({
       where: {
-        email: data.email,
+        username: data.username,
       },
       select: {
         id: true,
       },
     });
 
-    const getCategorie = await prisma.categories.findFirst({
+    const getCategorie = await prisma.category.findFirst({
       where: {
         category_name: categorie,
       },
@@ -26,7 +26,7 @@ export const getChapters = async (req, res) => {
 
     const challenges = await prisma.challenges.findMany({
       where: {
-        categorie_id: getCategorie.id,
+        category_id: getCategorie.id,
       },
       select: {
         level: true,
@@ -34,9 +34,9 @@ export const getChapters = async (req, res) => {
       },
     });
 
-    let progres = await prisma.user_proggress.findFirst({
+    let progres = await prisma.userProggress.findFirst({
       where: {
-        categorie_id: getCategorie.id,
+        category_id: getCategorie.id,
         user_id: getUser.id,
       },
       select: {
@@ -46,9 +46,9 @@ export const getChapters = async (req, res) => {
 
     if (!progres) {
       progres = { current_level: 1 };
-      await prisma.user_proggress.create({
+      await prisma.userProggress.create({
         data: {
-          categorie_id: getCategorie.id,
+          category_id: getCategorie.id,
           user_id: getUser.id,
           current_level: 1,
         },

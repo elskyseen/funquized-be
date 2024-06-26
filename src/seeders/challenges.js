@@ -1,11 +1,10 @@
 import { prisma } from "../config/db.js";
-import { categories, challenges } from "../utils/propertie.js";
 
 export async function challengeSeeder() {
   await prisma.challenges.createMany({
     data: [
       {
-        categorie_id: 1,
+        category_id: 1,
         question:
           "Aku berwarna hijau, sedikit masam dan berduri, buah apakah aku?",
         choices: ["anggur", "sirsak", "apel", "manggis"],
@@ -14,7 +13,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 1,
+        category_id: 1,
         question:
           "Aku berwarna merah, manis dan memiliki biji kecil-kecil di permukaanku, buah apakah aku?",
         choices: ["apel", "stroberi", "ceri", "delima"],
@@ -23,7 +22,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 1,
+        category_id: 1,
         question:
           "Aku berwarna kuning, manis dan sering dijadikan bahan jus, buah apakah aku?",
         choices: ["nanas", "mangga", "pisang", "jeruk"],
@@ -32,7 +31,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 1,
+        category_id: 1,
         question:
           "Aku memiliki daging berwarna oranye dan biji besar di tengah, buah apakah aku?",
         choices: ["mangga", "pepaya", "pisang", "apel"],
@@ -41,7 +40,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 1,
+        category_id: 1,
         question:
           "Aku kecil, berwarna biru atau ungu, sering digunakan dalam pai, buah apakah aku?",
         choices: ["stroberi", "blueberry", "ceri", "raspberry"],
@@ -50,7 +49,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 1,
+        category_id: 1,
         question:
           "Aku berwarna hijau atau ungu, memiliki kulit tebal dan banyak biji kecil, buah apakah aku?",
         choices: ["anggur", "kiwi", "plum", "alpukat"],
@@ -59,7 +58,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 1,
+        category_id: 1,
         question:
           "Aku berwarna kuning cerah, kulitku tebal dan rasaku sangat masam, buah apakah aku?",
         choices: ["jeruk", "lemon", "nanas", "pisang"],
@@ -68,7 +67,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 1,
+        category_id: 1,
         question:
           "Aku berwarna hijau atau kuning, kulitku tipis dan rasaku manis, buah apakah aku?",
         choices: ["apel", "pir", "melon", "alpukat"],
@@ -77,7 +76,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 1,
+        category_id: 1,
         question:
           "Aku berwarna merah dan memiliki banyak biji kecil di dalamnya, buah apakah aku?",
         choices: ["apel", "delima", "ceri", "stroberi"],
@@ -86,7 +85,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 1,
+        category_id: 1,
         question:
           "Aku berwarna oranye, kulitku tipis dan rasaku manis, buah apakah aku?",
         choices: ["jeruk", "nanas", "pisang", "mangga"],
@@ -95,7 +94,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 1,
+        category_id: 1,
         question:
           "Aku berwarna hijau di luar dan merah di dalam, rasaku manis dan segar, buah apakah aku?",
         choices: ["apel", "semangka", "pepaya", "jambu"],
@@ -104,7 +103,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 1,
+        category_id: 1,
         question:
           "Aku kecil, bulat dan berwarna merah, biasanya digunakan sebagai hiasan makanan, buah apakah aku?",
         choices: ["stroberi", "ceri", "raspberry", "anggur"],
@@ -113,7 +112,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 1,
+        category_id: 1,
         question:
           "Aku berwarna kuning, berbentuk panjang dan rasaku manis, buah apakah aku?",
         choices: ["jeruk", "pisang", "pepaya", "nanas"],
@@ -122,7 +121,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 1,
+        category_id: 1,
         question:
           "Aku berwarna hijau tua di luar dan dagingku berwarna hijau terang dengan biji kecil hitam, buah apakah aku?",
         choices: ["alpukat", "kiwi", "apel", "melon"],
@@ -131,7 +130,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 1,
+        category_id: 1,
         question:
           "Aku berwarna kuning di luar dan memiliki daging putih manis di dalam, buah apakah aku?",
         choices: ["pisang", "nanas", "melon", "apel"],
@@ -140,7 +139,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 1,
+        category_id: 1,
         question:
           "Aku kecil, berwarna hitam atau merah, dan sering dijadikan selai, buah apakah aku?",
         choices: ["blueberry", "raspberry", "mulberry", "ceri"],
@@ -149,7 +148,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 1,
+        category_id: 1,
         question:
           "Aku berwarna hijau atau kuning dan dagingku berwarna merah muda atau kuning, buah apakah aku?",
         choices: ["apel", "pir", "melon", "alpukat"],
@@ -158,7 +157,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 1,
+        category_id: 1,
         question:
           "Aku berwarna cokelat di luar, dagingku putih dan rasaku manis, buah apakah aku?",
         choices: ["kelapa", "nangka", "sawo", "alpukat"],
@@ -167,7 +166,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 1,
+        category_id: 1,
         question:
           "Aku berwarna kuning di luar dan dagingku berwarna putih atau merah muda, buah apakah aku?",
         choices: ["pisang", "pepaya", "buah naga", "nanas"],
@@ -176,7 +175,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 1,
+        category_id: 1,
         question:
           "Aku berwarna hijau di luar dan dagingku berwarna kuning, sering dijadikan jus, buah apakah aku?",
         choices: ["apel", "nanas", "jeruk", "alpukat"],
@@ -185,7 +184,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 2,
+        category_id: 2,
         question:
           "Aku adalah hewan laut yang memiliki delapan lengan, siapakah aku?",
         choices: ["ikan paus", "ikan hiu", "gurita", "ubur-ubur"],
@@ -194,7 +193,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 2,
+        category_id: 2,
         question: "Aku dikenal sebagai raja hutan, siapakah aku?",
         choices: ["harimau", "gajah", "singa", "serigala"],
         answer: "singa",
@@ -202,7 +201,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 2,
+        category_id: 2,
         question: "Aku hewan mamalia terbesar di bumi, siapakah aku?",
         choices: ["gajah", "ikan paus", "badak", "kuda nil"],
         answer: "ikan paus",
@@ -210,7 +209,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 2,
+        category_id: 2,
         question:
           "Aku memiliki belang hitam dan oranye di tubuhku, siapakah aku?",
         choices: ["harimau", "macan tutul", "cheetah", "singa"],
@@ -219,7 +218,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 2,
+        category_id: 2,
         question:
           "Aku hewan yang bisa berubah warna sesuai lingkungan, siapakah aku?",
         choices: ["bunglon", "kadal", "ular", "kodok"],
@@ -228,7 +227,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 2,
+        category_id: 2,
         question:
           "Aku burung yang terkenal bisa menirukan suara manusia, siapakah aku?",
         choices: ["elang", "burung hantu", "burung beo", "merpati"],
@@ -237,7 +236,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 2,
+        category_id: 2,
         question: "Aku memiliki tanduk besar di hidungku, siapakah aku?",
         choices: ["badak", "kerbau", "rusa", "gajah"],
         answer: "badak",
@@ -245,7 +244,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 2,
+        category_id: 2,
         question:
           "Aku hewan berkaki empat yang dikenal sebagai sahabat manusia, siapakah aku?",
         choices: ["kucing", "kelinci", "anjing", "kuda"],
@@ -254,7 +253,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 2,
+        category_id: 2,
         question:
           "Aku memiliki tubuh panjang dan sering dikaitkan dengan ular berbisa, siapakah aku?",
         choices: ["ular kobra", "ular piton", "ular sanca", "ular boa"],
@@ -263,7 +262,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 2,
+        category_id: 2,
         question:
           "Aku hewan yang dikenal bisa tidur selama musim dingin, siapakah aku?",
         choices: ["beruang", "rubah", "serigala", "kelinci"],
@@ -272,7 +271,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 2,
+        category_id: 2,
         question:
           "Aku hewan kecil yang dikenal dengan kemampuanku menghasilkan madu, siapakah aku?",
         choices: ["lebah", "lalat", "kupu-kupu", "jangkrik"],
@@ -281,7 +280,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 2,
+        category_id: 2,
         question:
           "Aku hewan amfibi yang bisa hidup di air dan di darat, siapakah aku?",
         choices: ["ikan", "katak", "ular", "kura-kura"],
@@ -290,7 +289,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 2,
+        category_id: 2,
         question:
           "Aku hewan nokturnal yang bisa terbang dan dikenal dengan echolokasi, siapakah aku?",
         choices: ["burung hantu", "kelelawar", "merpati", "elang"],
@@ -299,7 +298,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 2,
+        category_id: 2,
         question:
           "Aku dikenal sebagai hewan paling cepat di darat, siapakah aku?",
         choices: ["singa", "cheetah", "kuda", "rusa"],
@@ -308,7 +307,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 2,
+        category_id: 2,
         question:
           "Aku hewan laut yang memiliki cangkang keras dan berjalan miring, siapakah aku?",
         choices: ["kerang", "kepiting", "bintang laut", "gurita"],
@@ -317,7 +316,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 2,
+        category_id: 2,
         question:
           "Aku hewan yang memiliki kantong di perut untuk membawa anak, siapakah aku?",
         choices: ["kangguru", "koala", "panda", "rusa"],
@@ -326,7 +325,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 2,
+        category_id: 2,
         question:
           "Aku hewan yang dikenal dengan leher panjangku, siapakah aku?",
         choices: ["gajah", "jerapah", "unta", "rusa"],
@@ -335,7 +334,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 2,
+        category_id: 2,
         question:
           "Aku hewan air tawar yang bisa hidup di lumpur selama musim kemarau, siapakah aku?",
         choices: ["ikan lele", "ikan mas", "belut", "gurami"],
@@ -344,7 +343,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 2,
+        category_id: 2,
         question:
           "Aku hewan besar dengan kulit tebal dan belalai panjang, siapakah aku?",
         choices: ["badak", "gajah", "kuda nil", "kerbau"],
@@ -353,7 +352,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 2,
+        category_id: 2,
         question:
           "Aku dikenal sebagai hewan pengerat yang suka menggerogoti kayu, siapakah aku?",
         choices: ["tikus", "berang-berang", "landak", "kelinci"],
@@ -362,7 +361,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 3,
+        category_id: 3,
         question: "Ibu kota dari negara Indonesia adalah?",
         choices: ["Jakarta", "Bandung", "Surabaya", "Yogyakarta"],
         answer: "Jakarta",
@@ -370,7 +369,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 3,
+        category_id: 3,
         question: "Gunung tertinggi di dunia adalah?",
         choices: [
           "Gunung Kilimanjaro",
@@ -383,7 +382,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 3,
+        category_id: 3,
         question: "Negara manakah yang berbentuk seperti sepatu bot?",
         choices: ["Spanyol", "Prancis", "Italia", "Portugal"],
         answer: "Italia",
@@ -391,7 +390,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 3,
+        category_id: 3,
         question: "Sungai terpanjang di dunia adalah?",
         choices: [
           "Sungai Amazon",
@@ -404,7 +403,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 3,
+        category_id: 3,
         question: "Benua terkecil di dunia adalah?",
         choices: ["Australia", "Antartika", "Eropa", "Afrika"],
         answer: "Australia",
@@ -412,7 +411,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 3,
+        category_id: 3,
         question: "Ibukota dari negara Jepang adalah?",
         choices: ["Kyoto", "Osaka", "Tokyo", "Hiroshima"],
         answer: "Tokyo",
@@ -420,7 +419,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 3,
+        category_id: 3,
         question: "Negara dengan populasi terbanyak di dunia adalah?",
         choices: ["India", "Amerika Serikat", "Indonesia", "Cina"],
         answer: "Cina",
@@ -428,7 +427,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 3,
+        category_id: 3,
         question: "Negara mana yang terkenal dengan menara Eiffel?",
         choices: ["Jerman", "Spanyol", "Prancis", "Belgia"],
         answer: "Prancis",
@@ -436,7 +435,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 3,
+        category_id: 3,
         question: "Benua manakah yang memiliki gurun Sahara?",
         choices: ["Asia", "Amerika Selatan", "Afrika", "Australia"],
         answer: "Afrika",
@@ -444,7 +443,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 3,
+        category_id: 3,
         question: "Negara mana yang dikenal sebagai 'Negeri Paman Sam'?",
         choices: ["Kanada", "Amerika Serikat", "Meksiko", "Brasil"],
         answer: "Amerika Serikat",
@@ -452,7 +451,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 3,
+        category_id: 3,
         question: "Ibukota dari negara Australia adalah?",
         choices: ["Sydney", "Melbourne", "Canberra", "Brisbane"],
         answer: "Canberra",
@@ -460,7 +459,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 3,
+        category_id: 3,
         question: "Laut terbesar di dunia adalah?",
         choices: [
           "Laut Karibia",
@@ -473,7 +472,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 3,
+        category_id: 3,
         question:
           "Negara manakah yang terdiri dari ribuan pulau di Asia Tenggara?",
         choices: ["Filipina", "Malaysia", "Indonesia", "Thailand"],
@@ -482,7 +481,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 3,
+        category_id: 3,
         question:
           "Pegunungan yang membentang di sepanjang perbatasan antara Prancis dan Spanyol adalah?",
         choices: [
@@ -496,7 +495,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 3,
+        category_id: 3,
         question: "Ibukota dari negara Mesir adalah?",
         choices: ["Cairo", "Alexandria", "Giza", "Luxor"],
         answer: "Cairo",
@@ -504,7 +503,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 3,
+        category_id: 3,
         question: "Pulau terbesar di dunia adalah?",
         choices: ["Borneo", "Madagaskar", "Greenland", "Sumatra"],
         answer: "Greenland",
@@ -512,7 +511,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 3,
+        category_id: 3,
         question: "Negara mana yang terkenal dengan piramidanya?",
         choices: ["Yunani", "Italia", "India", "Mesir"],
         answer: "Mesir",
@@ -520,7 +519,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 3,
+        category_id: 3,
         question: "Danau terbesar di dunia adalah?",
         choices: [
           "Danau Victoria",
@@ -533,7 +532,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 3,
+        category_id: 3,
         question:
           "Negara mana yang berbatasan langsung dengan Amerika Serikat di sebelah selatan?",
         choices: ["Kanada", "Meksiko", "Kuba", "Brasil"],
@@ -542,7 +541,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 3,
+        category_id: 3,
         question: "Ibukota dari negara Rusia adalah?",
         choices: ["Moskow", "Saint Petersburg", "Kazan", "Novosibirsk"],
         answer: "Moskow",
@@ -550,7 +549,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 4,
+        category_id: 4,
         question: "Siapa presiden pertama Amerika Serikat?",
         choices: [
           "Abraham Lincoln",
@@ -563,7 +562,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 4,
+        category_id: 4,
         question: "Di mana lokasi tembok besar China?",
         choices: ["India", "Korea", "China", "Mongolia"],
         answer: "China",
@@ -571,7 +570,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 4,
+        category_id: 4,
         question: "Siapa yang menemukan Amerika pada tahun 1492?",
         choices: [
           "Ferdinand Magellan",
@@ -584,7 +583,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 4,
+        category_id: 4,
         question: "Perang Dunia I dimulai pada tahun berapa?",
         choices: ["1912", "1914", "1916", "1918"],
         answer: "1914",
@@ -592,7 +591,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 4,
+        category_id: 4,
         question: "Siapa yang dikenal sebagai 'Bapak Proklamator' Indonesia?",
         choices: [
           "Bung Tomo",
@@ -605,7 +604,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 4,
+        category_id: 4,
         question: "Negara mana yang terlibat dalam Perang Dingin?",
         choices: [
           "Amerika Serikat dan Jerman",
@@ -618,7 +617,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 4,
+        category_id: 4,
         question: "Siapa penulis naskah Deklarasi Kemerdekaan Amerika Serikat?",
         choices: [
           "Benjamin Franklin",
@@ -631,7 +630,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 4,
+        category_id: 4,
         question: "Di mana lokasi piramida Giza?",
         choices: ["Mesir", "Meksiko", "Peru", "India"],
         answer: "Mesir",
@@ -639,7 +638,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 4,
+        category_id: 4,
         question: "Siapa yang menjadi Kanselir Jerman pada tahun 1933?",
         choices: [
           "Joseph Stalin",
@@ -652,7 +651,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 4,
+        category_id: 4,
         question: "Revolusi Industri dimulai di negara mana?",
         choices: ["Prancis", "Amerika Serikat", "Inggris", "Jerman"],
         answer: "Inggris",
@@ -660,7 +659,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 4,
+        category_id: 4,
         question:
           "Siapa yang memimpin perjuangan kemerdekaan India melalui gerakan non-kekerasan?",
         choices: [
@@ -674,7 +673,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 4,
+        category_id: 4,
         question: "Perang Vietnam berakhir pada tahun berapa?",
         choices: ["1971", "1973", "1975", "1977"],
         answer: "1975",
@@ -682,7 +681,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 4,
+        category_id: 4,
         question: "Negara mana yang pertama kali mendaratkan manusia di bulan?",
         choices: ["Rusia", "Cina", "Amerika Serikat", "Jepang"],
         answer: "Amerika Serikat",
@@ -690,7 +689,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 4,
+        category_id: 4,
         question: "Siapa raja Makedonia yang menaklukkan Persia?",
         choices: ["Darius III", "Philip II", "Alexander Agung", "Cyrus Agung"],
         answer: "Alexander Agung",
@@ -698,7 +697,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 4,
+        category_id: 4,
         question: "Dimana Konferensi Asia Afrika tahun 1955 dilaksanakan?",
         choices: ["Jakarta", "Bandung", "Surabaya", "Yogyakarta"],
         answer: "Bandung",
@@ -706,7 +705,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 4,
+        category_id: 4,
         question:
           "Siapa yang menjadi presiden Amerika Serikat selama Perang Saudara?",
         choices: [
@@ -720,7 +719,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 4,
+        category_id: 4,
         question: "Perang Dunia II berakhir pada tahun berapa?",
         choices: ["1943", "1944", "1945", "1946"],
         answer: "1945",
@@ -728,7 +727,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 4,
+        category_id: 4,
         question:
           "Siapa yang dikenal sebagai pemimpin Bolshevik dalam Revolusi Rusia 1917?",
         choices: [
@@ -742,7 +741,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 4,
+        category_id: 4,
         question: "Bangunan kuno Machu Picchu terletak di negara mana?",
         choices: ["Meksiko", "Peru", "Brasil", "Argentina"],
         answer: "Peru",
@@ -750,7 +749,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 4,
+        category_id: 4,
         question: "Siapa yang dikenal sebagai penakluk Aztec?",
         choices: [
           "Francisco Pizarro",
@@ -763,7 +762,7 @@ export async function challengeSeeder() {
         point: 1,
       },
       {
-        categorie_id: 5,
+        category_id: 5,
         question: "Apa rumus untuk menghitung gaya?",
         choices: ["F = m * a", "F = m / a", "F = m + a", "F = m - a"],
         answer: "F = m * a",
@@ -771,7 +770,7 @@ export async function challengeSeeder() {
         point: 2,
       },
       {
-        categorie_id: 5,
+        category_id: 5,
         question: "Apa yang disebut sebagai 'sumber kehidupan' di Bumi?",
         choices: ["Air", "Tumbuhan", "Matahari", "Oksigen"],
         answer: "Matahari",
@@ -779,7 +778,7 @@ export async function challengeSeeder() {
         point: 2,
       },
       {
-        categorie_id: 5,
+        category_id: 5,
         question:
           "Bagian otak yang bertanggung jawab atas koordinasi gerakan tubuh adalah?",
         choices: ["Otak Tengah", "Otak Besar", "Otak Kecil", "Serebellum"],
@@ -788,7 +787,7 @@ export async function challengeSeeder() {
         point: 2,
       },
       {
-        categorie_id: 5,
+        category_id: 5,
         question: "Apa yang menyebabkan warna langit tampak biru?",
         choices: [
           "Penyebaran Cahaya",
@@ -801,7 +800,7 @@ export async function challengeSeeder() {
         point: 2,
       },
       {
-        categorie_id: 5,
+        category_id: 5,
         question: "Apa yang disebut sebagai unit dasar dari materi?",
         choices: ["Atom", "Molekul", "Partikel", "Proton"],
         answer: "Atom",
@@ -809,7 +808,7 @@ export async function challengeSeeder() {
         point: 2,
       },
       {
-        categorie_id: 5,
+        category_id: 5,
         question:
           "Apa nama ilmu yang mempelajari tentang benda langit di luar angkasa?",
         choices: ["Astronomi", "Biologi", "Fisika", "Kimia"],
@@ -818,7 +817,7 @@ export async function challengeSeeder() {
         point: 2,
       },
       {
-        categorie_id: 5,
+        category_id: 5,
         question: "Bagian tubuh yang memompa darah ke seluruh tubuh adalah?",
         choices: ["Jantung", "Paru-paru", "Hati", "Usus Besar"],
         answer: "Jantung",
@@ -826,7 +825,7 @@ export async function challengeSeeder() {
         point: 2,
       },
       {
-        categorie_id: 5,
+        category_id: 5,
         question: "Apa yang disebut sebagai 'gigi manusia'?",
         choices: ["Klorofil", "Enamel", "Plak", "Dentin"],
         answer: "Enamel",
@@ -834,7 +833,7 @@ export async function challengeSeeder() {
         point: 2,
       },
       {
-        categorie_id: 5,
+        category_id: 5,
         question:
           "Benda yang mengalami percepatan negatif dikatakan mengalami?",
         choices: [
@@ -848,7 +847,7 @@ export async function challengeSeeder() {
         point: 2,
       },
       {
-        categorie_id: 5,
+        category_id: 5,
         question:
           "Zat yang tidak dapat dipecah menjadi zat yang lebih sederhana dengan cara kimia disebut?",
         choices: ["Unsur", "Molekul", "Komponen", "Senyawa"],
@@ -857,7 +856,7 @@ export async function challengeSeeder() {
         point: 2,
       },
       {
-        categorie_id: 5,
+        category_id: 5,
         question: "Apa nama zat yang memberikan warna pada daun hijau?",
         choices: ["Xantofil", "Karotenoid", "Klorofil", "Fikobilin"],
         answer: "Klorofil",
@@ -865,7 +864,7 @@ export async function challengeSeeder() {
         point: 2,
       },
       {
-        categorie_id: 5,
+        category_id: 5,
         question:
           "Apa istilah untuk interaksi antara dua objek yang memiliki muatan listrik?",
         choices: [
@@ -879,7 +878,7 @@ export async function challengeSeeder() {
         point: 2,
       },
       {
-        categorie_id: 5,
+        category_id: 5,
         question:
           "Apa yang disebut sebagai 'kemampuan suatu zat untuk menghantar listrik'?",
         choices: ["Hambatan", "Tahanan", "Konduktivitas", "Isolator"],
@@ -888,7 +887,7 @@ export async function challengeSeeder() {
         point: 2,
       },
       {
-        categorie_id: 5,
+        category_id: 5,
         question:
           "Apa nama cairan di dalam sel yang mengandung zat-zat penting untuk proses seluler?",
         choices: ["Plasma", "Sitoplasma", "Ribosom", "Lisosom"],
@@ -897,7 +896,7 @@ export async function challengeSeeder() {
         point: 2,
       },
       {
-        categorie_id: 5,
+        category_id: 5,
         question:
           "Bagian dari mata yang berfungsi untuk mengatur kuantitas cahaya yang masuk adalah?",
         choices: ["Kornea", "Iris", "Retina", "Pupil"],
@@ -906,7 +905,7 @@ export async function challengeSeeder() {
         point: 2,
       },
       {
-        categorie_id: 5,
+        category_id: 5,
         question:
           "Apakah nama cairan di dalam sel yang mengandung zat-zat penting untuk proses seluler?",
         choices: ["Plasma", "Sitoplasma", "Ribosom", "Lisosom"],
@@ -915,7 +914,7 @@ export async function challengeSeeder() {
         point: 2,
       },
       {
-        categorie_id: 5,
+        category_id: 5,
         question: "Zat yang menguap dari permukaan benda cair disebut?",
         choices: ["Evaporasi", "Kondensasi", "Sublimasi", "Distilasi"],
         answer: "Evaporasi",
@@ -923,7 +922,7 @@ export async function challengeSeeder() {
         point: 2,
       },
       {
-        categorie_id: 5,
+        category_id: 5,
         question:
           "Pembelahan inti sel secara mitosis menghasilkan berapa banyak sel anak?",
         choices: ["2", "3", "4", "1"],
@@ -932,7 +931,7 @@ export async function challengeSeeder() {
         point: 2,
       },
       {
-        categorie_id: 5,
+        category_id: 5,
         question:
           "Apa istilah untuk peristiwa kehilangan air secara berlebihan oleh tumbuhan?",
         choices: ["Transpirasi", "Evaporasi", "Kondensasi", "Sublimasi"],
@@ -941,7 +940,7 @@ export async function challengeSeeder() {
         point: 2,
       },
       {
-        categorie_id: 5,
+        category_id: 5,
         question:
           "Apa nama fase dalam siklus hidrologi di mana air jatuh ke bumi dalam bentuk hujan?",
         choices: ["Transpirasi", "Presipitasi", "Evaluasi", "Konveksi"],
@@ -950,7 +949,7 @@ export async function challengeSeeder() {
         point: 2,
       },
       {
-        categorie_id: 6,
+        category_id: 6,
         question:
           "Siapakah penyanyi legendaris yang dikenal sebagai 'Raja Pop'?",
         choices: [
@@ -964,7 +963,7 @@ export async function challengeSeeder() {
         point: 2,
       },
       {
-        categorie_id: 6,
+        category_id: 6,
         question: "Gitaris legendaris dari band 'The Beatles' adalah?",
         choices: [
           "Paul McCartney",
@@ -977,7 +976,7 @@ export async function challengeSeeder() {
         point: 3,
       },
       {
-        categorie_id: 6,
+        category_id: 6,
         question: "Siapa penyanyi wanita dengan julukan 'Queen of Soul'?",
         choices: [
           "Whitney Houston",
@@ -990,7 +989,7 @@ export async function challengeSeeder() {
         point: 4,
       },
       {
-        categorie_id: 6,
+        category_id: 6,
         question: "Album 'Thriller' merupakan karya dari?",
         choices: ["Elvis Presley", "Michael Jackson", "Prince", "Madonna"],
         answer: "Michael Jackson",
@@ -998,7 +997,7 @@ export async function challengeSeeder() {
         point: 5,
       },
       {
-        categorie_id: 6,
+        category_id: 6,
         question: "Siapakah gitaris legendaris dari band 'Led Zeppelin'?",
         choices: [
           "Jimmy Page",
@@ -1011,7 +1010,7 @@ export async function challengeSeeder() {
         point: 6,
       },
       {
-        categorie_id: 6,
+        category_id: 6,
         question: "Lagu 'Bohemian Rhapsody' adalah karya dari band?",
         choices: ["Queen", "The Rolling Stones", "The Who", "Pink Floyd"],
         answer: "Queen",
@@ -1019,7 +1018,7 @@ export async function challengeSeeder() {
         point: 7,
       },
       {
-        categorie_id: 6,
+        category_id: 6,
         question:
           "Siapakah penyanyi legendaris yang dikenal sebagai 'The King of Rock and Roll'?",
         choices: [
@@ -1033,7 +1032,7 @@ export async function challengeSeeder() {
         point: 8,
       },
       {
-        categorie_id: 6,
+        category_id: 6,
         question: "Grup band 'The Rolling Stones' berasal dari negara?",
         choices: ["Amerika Serikat", "Inggris", "Kanada", "Australia"],
         answer: "Inggris",
@@ -1041,7 +1040,7 @@ export async function challengeSeeder() {
         point: 9,
       },
       {
-        categorie_id: 6,
+        category_id: 6,
         question:
           "Siapa penyanyi legendaris yang dikenal sebagai 'The Queen of Pop'?",
         choices: ["Madonna", "Britney Spears", "Lady Gaga", "Rihanna"],
@@ -1050,7 +1049,7 @@ export async function challengeSeeder() {
         point: 10,
       },
       {
-        categorie_id: 6,
+        category_id: 6,
         question: "Band 'Nirvana' berasal dari kota?",
         choices: ["Seattle", "Los Angeles", "New York", "Chicago"],
         answer: "Seattle",
@@ -1058,7 +1057,7 @@ export async function challengeSeeder() {
         point: 11,
       },
       {
-        categorie_id: 6,
+        category_id: 6,
         question:
           "Siapakah penyanyi legendaris yang dikenal sebagai 'The Boss'?",
         choices: ["Bruce Springsteen", "Bob Dylan", "Tom Petty", "Neil Young"],
@@ -1067,7 +1066,7 @@ export async function challengeSeeder() {
         point: 12,
       },
       {
-        categorie_id: 6,
+        category_id: 6,
         question: "Siapa vokalis band 'Queen'?",
         choices: [
           "Freddie Mercury",
@@ -1080,7 +1079,7 @@ export async function challengeSeeder() {
         point: 13,
       },
       {
-        categorie_id: 6,
+        category_id: 6,
         question: "Siapakah penyanyi yang dikenal dengan lagu 'Like a Virgin'?",
         choices: ["Madonna", "Whitney Houston", "Cher", "Celine Dion"],
         answer: "Madonna",
@@ -1088,7 +1087,7 @@ export async function challengeSeeder() {
         point: 14,
       },
       {
-        categorie_id: 6,
+        category_id: 6,
         question: "Band legendaris 'Pink Floyd' berasal dari negara?",
         choices: ["Inggris", "Amerika Serikat", "Kanada", "Australia"],
         answer: "Inggris",
@@ -1096,7 +1095,7 @@ export async function challengeSeeder() {
         point: 15,
       },
       {
-        categorie_id: 6,
+        category_id: 6,
         question:
           "Siapakah penyanyi legendaris yang dikenal sebagai 'The Godfather of Soul'?",
         choices: ["James Brown", "Ray Charles", "Stevie Wonder", "Marvin Gaye"],
@@ -1105,7 +1104,7 @@ export async function challengeSeeder() {
         point: 16,
       },
       {
-        categorie_id: 6,
+        category_id: 6,
         question: "Gitaris band 'Guns N' Roses' adalah?",
         choices: ["Slash", "Jimmy Page", "Eddie Van Halen", "Angus Young"],
         answer: "Slash",
@@ -1113,7 +1112,7 @@ export async function challengeSeeder() {
         point: 17,
       },
       {
-        categorie_id: 6,
+        category_id: 6,
         question:
           "Siapakah penyanyi legendaris yang dikenal dengan lagu 'Purple Rain'?",
         choices: ["Prince", "Michael Jackson", "Stevie Wonder", "Marvin Gaye"],
@@ -1122,7 +1121,7 @@ export async function challengeSeeder() {
         point: 18,
       },
       {
-        categorie_id: 6,
+        category_id: 6,
         question: "Siapakah gitaris band 'AC/DC'?",
         choices: ["Angus Young", "Slash", "Jimmy Page", "Eddie Van Halen"],
         answer: "Angus Young",
@@ -1130,7 +1129,7 @@ export async function challengeSeeder() {
         point: 19,
       },
       {
-        categorie_id: 6,
+        category_id: 6,
         question:
           "Siapakah penyanyi legendaris yang dikenal sebagai 'The Queen of Soul'?",
         choices: [
@@ -1144,7 +1143,7 @@ export async function challengeSeeder() {
         point: 20,
       },
       {
-        categorie_id: 6,
+        category_id: 6,
         question: "Band 'The Doors' berasal dari kota?",
         choices: ["New York", "Los Angeles", "San Francisco", "Chicago"],
         answer: "Los Angeles",
@@ -1152,7 +1151,7 @@ export async function challengeSeeder() {
         point: 21,
       },
       {
-        categorie_id: 7,
+        category_id: 7,
         question:
           "Siapakah aktor yang memerankan karakter James Bond dalam film 'Casino Royale'?",
         choices: [
@@ -1166,7 +1165,7 @@ export async function challengeSeeder() {
         point: 3,
       },
       {
-        categorie_id: 7,
+        category_id: 7,
         question: "Siapakah sutradara dari film 'The Shawshank Redemption'?",
         choices: [
           "Steven Spielberg",
@@ -1179,7 +1178,7 @@ export async function challengeSeeder() {
         point: 4,
       },
       {
-        categorie_id: 7,
+        category_id: 7,
         question:
           "Aktor yang memerankan karakter Joker dalam film 'The Dark Knight' adalah?",
         choices: [
@@ -1193,7 +1192,7 @@ export async function challengeSeeder() {
         point: 5,
       },
       {
-        categorie_id: 7,
+        category_id: 7,
         question:
           "Siapakah aktris yang memerankan karakter Katniss Everdeen dalam film 'The Hunger Games'?",
         choices: [
@@ -1207,7 +1206,7 @@ export async function challengeSeeder() {
         point: 6,
       },
       {
-        categorie_id: 7,
+        category_id: 7,
         question: "Film 'The Godfather' disutradarai oleh?",
         choices: [
           "Francis Ford Coppola",
@@ -1220,7 +1219,7 @@ export async function challengeSeeder() {
         point: 7,
       },
       {
-        categorie_id: 7,
+        category_id: 7,
         question:
           "Aktor yang memerankan karakter Gandalf dalam film 'The Lord of the Rings' adalah?",
         choices: [
@@ -1234,7 +1233,7 @@ export async function challengeSeeder() {
         point: 8,
       },
       {
-        categorie_id: 7,
+        category_id: 7,
         question: "Siapakah sutradara dari film 'Inception'?",
         choices: [
           "Steven Spielberg",
@@ -1247,7 +1246,7 @@ export async function challengeSeeder() {
         point: 9,
       },
       {
-        categorie_id: 7,
+        category_id: 7,
         question:
           "Aktor yang memerankan karakter Iron Man dalam film 'Iron Man' adalah?",
         choices: [
@@ -1261,7 +1260,7 @@ export async function challengeSeeder() {
         point: 10,
       },
       {
-        categorie_id: 7,
+        category_id: 7,
         question: "Film 'Forrest Gump' disutradarai oleh?",
         choices: [
           "Steven Spielberg",
@@ -1274,7 +1273,7 @@ export async function challengeSeeder() {
         point: 11,
       },
       {
-        categorie_id: 7,
+        category_id: 7,
         question:
           "Aktor yang memerankan karakter Jack Sparrow dalam film 'Pirates of the Caribbean' adalah?",
         choices: [
@@ -1288,7 +1287,7 @@ export async function challengeSeeder() {
         point: 12,
       },
       {
-        categorie_id: 7,
+        category_id: 7,
         question:
           "Siapakah aktris yang memerankan karakter Hermione Granger dalam film 'Harry Potter'?",
         choices: [
@@ -1302,7 +1301,7 @@ export async function challengeSeeder() {
         point: 13,
       },
       {
-        categorie_id: 7,
+        category_id: 7,
         question: "Film 'The Matrix' disutradarai oleh?",
         choices: [
           "James Cameron",
@@ -1315,7 +1314,7 @@ export async function challengeSeeder() {
         point: 14,
       },
       {
-        categorie_id: 7,
+        category_id: 7,
         question:
           "Aktor yang memerankan karakter Neo dalam film 'The Matrix' adalah?",
         choices: [
@@ -1329,7 +1328,7 @@ export async function challengeSeeder() {
         point: 15,
       },
       {
-        categorie_id: 7,
+        category_id: 7,
         question: "Film 'Inglourious Basterds' disutradarai oleh?",
         choices: [
           "Quentin Tarantino",
@@ -1342,7 +1341,7 @@ export async function challengeSeeder() {
         point: 16,
       },
       {
-        categorie_id: 7,
+        category_id: 7,
         question:
           "Aktor yang memerankan karakter Wolverine dalam film 'X-Men' adalah?",
         choices: [
@@ -1356,7 +1355,7 @@ export async function challengeSeeder() {
         point: 17,
       },
       {
-        categorie_id: 7,
+        category_id: 7,
         question:
           "Siapakah aktris yang memerankan karakter Black Widow dalam film 'Avengers'?",
         choices: [
@@ -1370,7 +1369,7 @@ export async function challengeSeeder() {
         point: 18,
       },
       {
-        categorie_id: 7,
+        category_id: 7,
         question: "Film 'Jurassic Park' disutradarai oleh?",
         choices: [
           "James Cameron",
@@ -1383,7 +1382,7 @@ export async function challengeSeeder() {
         point: 19,
       },
       {
-        categorie_id: 7,
+        category_id: 7,
         question:
           "Aktor yang memerankan karakter Tony Stark dalam film 'Iron Man' adalah?",
         choices: [
@@ -1397,7 +1396,7 @@ export async function challengeSeeder() {
         point: 20,
       },
       {
-        categorie_id: 7,
+        category_id: 7,
         question: "Siapakah sutradara dari film 'The Dark Knight'?",
         choices: [
           "Christopher Nolan",
@@ -1410,7 +1409,7 @@ export async function challengeSeeder() {
         point: 21,
       },
       {
-        categorie_id: 7,
+        category_id: 7,
         question: "Film 'The Silence of the Lambs' disutradarai oleh?",
         choices: [
           "David Fincher",
@@ -1423,7 +1422,7 @@ export async function challengeSeeder() {
         point: 22,
       },
       {
-        categorie_id: 8,
+        category_id: 8,
         question: "Negara manakah yang terkenal dengan pizza?",
         choices: ["Italia", "Perancis", "Spanyol", "Amerika Serikat"],
         answer: "Italia",
@@ -1431,7 +1430,7 @@ export async function challengeSeeder() {
         point: 2,
       },
       {
-        categorie_id: 8,
+        category_id: 8,
         question: "Minuman berkarbonasi yang terkenal dengan rasa cola adalah?",
         choices: ["Sprite", "Coca-Cola", "Pepsi", "Fanta"],
         answer: "Coca-Cola",
@@ -1439,7 +1438,7 @@ export async function challengeSeeder() {
         point: 3,
       },
       {
-        categorie_id: 8,
+        category_id: 8,
         question:
           "Makanan ringan yang terbuat dari kentang yang dipotong tipis dan digoreng adalah?",
         choices: ["Chips", "Popcorn", "French fries", "Nugget"],
@@ -1448,7 +1447,7 @@ export async function challengeSeeder() {
         point: 4,
       },
       {
-        categorie_id: 8,
+        category_id: 8,
         question: "Minuman beralkohol yang terkenal dari Skotlandia adalah?",
         choices: ["Tequila", "Vodka", "Rum", "Scotch"],
         answer: "Scotch",
@@ -1456,7 +1455,7 @@ export async function challengeSeeder() {
         point: 5,
       },
       {
-        categorie_id: 8,
+        category_id: 8,
         question:
           "Makanan khas Jepang yang terdiri dari nasi yang dibentuk dan disajikan dengan topping adalah?",
         choices: ["Sushi", "Tempura", "Ramen", "Udon"],
@@ -1465,7 +1464,7 @@ export async function challengeSeeder() {
         point: 6,
       },
       {
-        categorie_id: 8,
+        category_id: 8,
         question: "Minuman panas yang terbuat dari biji kopi adalah?",
         choices: ["Espresso", "Latte", "Cappuccino", "Americano"],
         answer: "Espresso",
@@ -1473,7 +1472,7 @@ export async function challengeSeeder() {
         point: 7,
       },
       {
-        categorie_id: 8,
+        category_id: 8,
         question:
           "Makanan khas India yang terdiri dari daging atau sayuran yang dimasak dalam saus krim adalah?",
         choices: ["Curry", "Tandoori", "Biryani", "Naan"],
@@ -1482,7 +1481,7 @@ export async function challengeSeeder() {
         point: 8,
       },
       {
-        categorie_id: 8,
+        category_id: 8,
         question:
           "Minuman tradisional Jepang yang terbuat dari teh hijau bubuk adalah?",
         choices: ["Sencha", "Genmaicha", "Matcha", "Hojicha"],
@@ -1491,7 +1490,7 @@ export async function challengeSeeder() {
         point: 9,
       },
       {
-        categorie_id: 8,
+        category_id: 8,
         question:
           "Makanan ringan yang terbuat dari tepung terigu, mentega, dan gula adalah?",
         choices: ["Brownie", "Donat", "Cookies", "Cake"],
@@ -1500,7 +1499,7 @@ export async function challengeSeeder() {
         point: 10,
       },
       {
-        categorie_id: 8,
+        category_id: 8,
         question: "Minuman beralkohol yang terbuat dari anggur adalah?",
         choices: ["Rum", "Vodka", "Wine", "Tequila"],
         answer: "Wine",
@@ -1508,7 +1507,7 @@ export async function challengeSeeder() {
         point: 11,
       },
       {
-        categorie_id: 8,
+        category_id: 8,
         question:
           "Makanan ringan yang terbuat dari jagung yang dipanaskan dan meledak adalah?",
         choices: ["Chips", "Popcorn", "French fries", "Nugget"],
@@ -1517,7 +1516,7 @@ export async function challengeSeeder() {
         point: 12,
       },
       {
-        categorie_id: 8,
+        category_id: 8,
         question: "Minuman beralkohol yang terkenal dari Meksiko adalah?",
         choices: ["Tequila", "Vodka", "Rum", "Scotch"],
         answer: "Tequila",
@@ -1525,7 +1524,7 @@ export async function challengeSeeder() {
         point: 13,
       },
       {
-        categorie_id: 8,
+        category_id: 8,
         question:
           "Makanan khas Italia yang terdiri dari lapisan pasta, saus tomat, dan keju adalah?",
         choices: ["Lasagna", "Spaghetti", "Ravioli", "Fettuccine Alfredo"],
@@ -1534,7 +1533,7 @@ export async function challengeSeeder() {
         point: 14,
       },
       {
-        categorie_id: 8,
+        category_id: 8,
         question:
           "Minuman ringan berkarbonasi yang terkenal dengan rasa jeruk adalah?",
         choices: ["Coca-Cola", "Sprite", "Fanta", "Pepsi"],
@@ -1543,7 +1542,7 @@ export async function challengeSeeder() {
         point: 15,
       },
       {
-        categorie_id: 8,
+        category_id: 8,
         question:
           "Makanan ringan yang terbuat dari adonan terigu yang digoreng dan biasanya diberi topping adalah?",
         choices: ["Doughnut", "Churros", "Pancake", "Waffle"],
@@ -1552,7 +1551,7 @@ export async function challengeSeeder() {
         point: 16,
       },
       {
-        categorie_id: 8,
+        category_id: 8,
         question: "Minuman beralkohol yang terkenal dari Irlandia adalah?",
         choices: ["Tequila", "Vodka", "Whiskey", "Rum"],
         answer: "Whiskey",
@@ -1560,7 +1559,7 @@ export async function challengeSeeder() {
         point: 17,
       },
       {
-        categorie_id: 8,
+        category_id: 8,
         question: "Makanan ringan yang terbuat dari daging sapi kering adalah?",
         choices: ["Jerky", "Chips", "Popcorn", "Nugget"],
         answer: "Jerky",
@@ -1568,7 +1567,7 @@ export async function challengeSeeder() {
         point: 18,
       },
       {
-        categorie_id: 8,
+        category_id: 8,
         question: "Minuman kopi yang terdiri dari espresso dan susu adalah?",
         choices: ["Latte", "Cappuccino", "Americano", "Macchiato"],
         answer: "Latte",
@@ -1576,7 +1575,7 @@ export async function challengeSeeder() {
         point: 19,
       },
       {
-        categorie_id: 8,
+        category_id: 8,
         question:
           "Makanan khas Meksiko yang terdiri dari tortilla, daging, dan berbagai bahan lainnya adalah?",
         choices: ["Taco", "Burrito", "Enchilada", "Quesadilla"],
@@ -1585,7 +1584,7 @@ export async function challengeSeeder() {
         point: 20,
       },
       {
-        categorie_id: 8,
+        category_id: 8,
         question:
           "Minuman tradisional Inggris yang terbuat dari teh dan susu adalah?",
         choices: ["Tea", "Chai", "Earl Grey", "English Breakfast"],

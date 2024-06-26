@@ -1,10 +1,9 @@
-import { jwtDecode } from "jwt-decode";
 import { prisma } from "../config/db.js";
 
 export const getChallenge = async (req, res) => {
   try {
     const { level, categorie } = req.query;
-    const { id } = await prisma.categories.findFirst({
+    const { id } = await prisma.category.findFirst({
       where: {
         category_name: categorie,
       },
@@ -14,7 +13,7 @@ export const getChallenge = async (req, res) => {
     });
     const challenge = await prisma.challenges.findFirst({
       where: {
-        categorie_id: id,
+        category_id: id,
         level: parseInt(level),
       },
       select: {
@@ -32,7 +31,7 @@ export const getChallenge = async (req, res) => {
 export const postChallenge = async (req, res) => {
   try {
     const { level, categorie, answer, username } = req.body;
-    const { id } = await prisma.categories.findFirst({
+    const { id } = await prisma.category.findFirst({
       where: {
         category_name: categorie,
       },
@@ -42,7 +41,7 @@ export const postChallenge = async (req, res) => {
     });
     const challenge = await prisma.challenges.findFirst({
       where: {
-        categorie_id: id,
+        category_id: id,
         level: parseInt(level),
       },
       select: {
@@ -60,9 +59,9 @@ export const postChallenge = async (req, res) => {
       },
     });
 
-    const progresUser = await prisma.user_proggress.findFirst({
+    const progresUser = await prisma.userProggress.findFirst({
       where: {
-        categorie_id: id,
+        category_id: id,
         user_id: user.id,
       },
       select: {
@@ -79,9 +78,9 @@ export const postChallenge = async (req, res) => {
           point: user.point + challenge.point,
         },
       });
-      await prisma.user_proggress.updateMany({
+      await prisma.userProggress.updateMany({
         where: {
-          categorie_id: id,
+          category_id: id,
           user_id: user.id,
         },
         data: {

@@ -9,7 +9,7 @@ import { blankChar } from "../validations/blankCharValidation.js";
 
 export const getCategorie = async (req, res) => {
   try {
-    const categories = await prisma.categories.findMany({
+    const categories = await prisma.category.findMany({
       select: {
         id: true,
         url_image: true,
@@ -51,7 +51,7 @@ export const createCategorie = async (req, res) => {
   const ext = path.extname(name);
 
   try {
-    const findCategorie = await prisma.categories.findFirst({
+    const findCategorie = await prisma.category.findFirst({
       where: {
         image: fullName,
       },
@@ -87,7 +87,7 @@ export const createCategorie = async (req, res) => {
   });
 
   try {
-    await prisma.categories.create({
+    await prisma.category.create({
       data: {
         image: fullName,
         category_name: categorie,

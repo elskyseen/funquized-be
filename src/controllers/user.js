@@ -6,6 +6,7 @@ import { extValidation } from "../validations/extValidation.js";
 import { sizeValidation } from "../validations/sizeValidation.js";
 import { genFullNameImage } from "../utils/genFullNameImage.js";
 import { jwtDecode } from "jwt-decode";
+import { clearSpace } from "../utils/replaceWhiteSpace.js";
 
 // handle get users
 export const getUsers = async (req, res) => {
@@ -15,11 +16,10 @@ export const getUsers = async (req, res) => {
     const { data } = jwtDecode(refreshToken);
     const users = await prisma.users.findFirst({
       where: {
-        email: data.email,
+        username: data.username,
       },
       select: {
         username: true,
-        email: true,
         image_url: true,
         point: true,
         banned: true,
@@ -38,7 +38,8 @@ export const getUsers = async (req, res) => {
 // handle create user / signup / register
 export const createUser = (req, res) => {
   // get data form request body
-  const { username, email, password, confirmPassword } = req.body;
+  const { username, password, confirmPassword } = req.body;
+  let cleanedString = clearSpace(username);
 
   // check password and confirm password should be match
   if (password !== confirmPassword) {
@@ -52,8 +53,7 @@ export const createUser = (req, res) => {
       try {
         await prisma.users.create({
           data: {
-            username,
-            email,
+            username: cleanedString,
             password: hash,
             point: 0,
           },
@@ -61,10 +61,6 @@ export const createUser = (req, res) => {
         // send message to response body
         res.status(200).json({
           message: "Create user successfuly",
-          data: {
-            email,
-            username,
-          },
         });
       } catch (err) {
         const target = err.meta.target[0];
@@ -147,7 +143,7 @@ export const getUserProggress = async (req, res) => {
       },
     });
 
-    const getCategorie = await prisma.categories.findUnique({
+    const getCategorie = await prisma.category.findUnique({
       where: {
         category_name: categorie,
       },
@@ -156,9 +152,9 @@ export const getUserProggress = async (req, res) => {
       },
     });
 
-    const progres = await prisma.user_proggress.findFirst({
+    const progres = await prisma.userProggress.findFirst({
       where: {
-        categorie_id: parseInt(getCategorie.id),
+        category_id: parseInt(getCategorie.id),
         user_id: parseInt(getUser.id),
       },
       select: {
