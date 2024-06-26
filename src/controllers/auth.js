@@ -63,11 +63,8 @@ export const login = async (req, res) => {
             partitioned: true,
           }),
           cookie.serialize("isLogin", true, {
-            maxAge: 24 * 60 * 60 * 1000,
             path: "/",
             secure: true,
-            sameSite: "None",
-            partitioned: true,
           }),
         ];
 
