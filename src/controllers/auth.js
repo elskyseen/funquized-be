@@ -127,6 +127,7 @@ export const logout = async (req, res) => {
 
   // clear cookie from user
   res.clearCookie("refreshToken");
+  res.clearCookie("isLogin");
   // send message
   return res.status(200).json({ message: "Logout successfuly" });
 };
