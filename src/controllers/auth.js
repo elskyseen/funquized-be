@@ -52,8 +52,8 @@ export const login = async (req, res) => {
 
       // set cookie with name "refreshToken"
       if (data && data.username) {
-        // Set a new cookie with the name
-        const cookies = [
+        res.setHeader(
+          "Set-Cookie",
           cookie.serialize("refreshToken", refreshToken, {
             maxAge: 24 * 60 * 60 * 1000,
             path: "/",
@@ -61,14 +61,8 @@ export const login = async (req, res) => {
             secure: true,
             sameSite: "None",
             partitioned: true,
-          }),
-          cookie.serialize("isLogin", true, {
-            path: "/",
-            secure: true,
-          }),
-        ];
-
-        res.setHeader("Set-Cookie", cookies);
+          })
+        );
       }
       // send access token to response body
       return res.json({ accessToken });
